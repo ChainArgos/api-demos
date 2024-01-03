@@ -15,3 +15,5 @@ You probably want to skip the first column with total outflow on that date.
 The Google Sheet [here](https://docs.google.com/spreadsheets/d/1ksitF87TXLb48yLZUqJrv1PwZ9UHGdGPcpAgIa5eYMw/)
 is used by the code.
 That sheet is publicly viewable (as this is a demo).
+
+Example code is [here](https://github.com/ChainArgos/api-demos/blob/main/ygg_stats/example.py) on GitHub.
