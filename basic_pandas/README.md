@@ -9,5 +9,3 @@ And this code extracts data from there.
 The sheet is configured to update hourly, look at the last 90 calendar days and
 only return wallets with a total flow over US$ 1 million.
 Those parameters are all visible within the sheet.
-
-{% include "git+https://github.com/ChainArgos/api-demos/blob/main/basic_pandas/basic_pandas.py" %}
