@@ -16,4 +16,4 @@ The Google Sheet [here](https://docs.google.com/spreadsheets/d/1ksitF87TXLb48yLZ
 is used by the code.
 That sheet is publicly viewable (as this is a demo).
 
-Example code is [here](https://github.com/ChainArgos/api-demos/blob/main/ygg_stats/example.py) on GitHub.
+On GitHub [here](https://github.com/ChainArgos/api-demos/blob/main/ygg_stats/example.py).
