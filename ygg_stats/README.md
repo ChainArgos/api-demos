@@ -15,3 +15,15 @@ You probably want to skip the first column with total outflow on that date.
 The Google Sheet [here](https://docs.google.com/spreadsheets/d/1ksitF87TXLb48yLZUqJrv1PwZ9UHGdGPcpAgIa5eYMw/)
 is used by the code.
 That sheet is publicly viewable (as this is a demo).
+
+## Details
+
+### Code
+
+{% @github-files/github-code-block url="https://github.com/ChainArgos/api-demos/blob/f81cc3d88cc6527575cc260f182790d913a4dcf8/ygg_stats/example.py" %}
+
+### CSV Data
+An example interim csv output is [here](https://github.com/ChainArgos/api-demos/blob/37e3d1d53a7b17a8f88552b3511febcb13fb1387/ygg_stats/data.csv).
+
+### Final Spreadsheet
+And one aggregation into a spreadsheet is [here](https://github.com/ChainArgos/api-demos/blob/f81cc3d88cc6527575cc260f182790d913a4dcf8/ygg_stats/stacked_bar_ygg.ods).
