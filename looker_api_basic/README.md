@@ -1,7 +1,5 @@
 # Minimal Looker API Connection Example
 
-You can find the code [here](https://github.com/ChainArgos/api-demos/blob/main/looker_api_basic/conn_test.py).
-
 This is a simple example which prints out all available dashboards.
 {% @github-files/github-code-block url="https://github.com/ChainArgos/api-demos/blob/main/looker_api_basic/conn_test.py" %}
 
