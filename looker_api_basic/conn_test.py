@@ -1,6 +1,5 @@
 import looker_sdk
-sdk = looker_sdk.init40("../looker_dashboard/looker.ini")
-#conn = sdk.connection("test")
-res = sdk.all_boards()
-print(str(res))
-print(str(len(res)))
+sdk = looker_sdk.init40("looker.ini")
+boards = sdk.all_boards()
+for board in boards:
+    print(str(board))
