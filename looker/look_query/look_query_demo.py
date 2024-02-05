@@ -40,10 +40,10 @@ new_query = sdk.create_query(
 )
 
 # run it
-result_raw = sdk.run_query(query_id=new_query.id, result_format='json')
+result_raw = sdk.run_query(query_id=new_query.id, result_format='json_bi')
 result = json.loads(result_raw)
 
 # print results
-assert len(result) == 1
-for k, v in result[0].items():
+assert len(result['rows']) == 1
+for k, v in result['rows'][0].items():
     print(str(k) + " : " + str(v))
