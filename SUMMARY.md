@@ -1,10 +1,10 @@
 # Table of contents
 
 * [🔌 api-demos](README.md)
-* [Basic Google-Sheet-pivot-table-based Queries](google_sheets.md)
-  * [🦮 API Walkthrough](walkthrough.md)
-  * [🎬 Basic ETL demo](basic\_pandas/README.md)
-  * [🎰 Compute statistics on YGG flows](ygg\_stats/README.md)
-* [More Complex Looker API Queries](looker_api.md)
-  * [Looker API Introduction](looker_api_basic/README.md)
-  * [Running a Look via API](look_query/README.md)
+* [Basic Google-Sheet-pivot-table-based Queries](google-sheets/google_sheets.md)
+  * [🦮 API Walkthrough](google-sheets/walkthrough.md)
+  * [🎬 Basic ETL demo](google-sheets/basic\_pandas/README.md)
+  * [🎰 Compute statistics on YGG flows](google-sheets/ygg\_stats/README.md)
+* [More Complex Looker API Queries](looker/looker\_api.md)
+  * [Looker API Introduction](looker/looker\_api\_basic/README.md)
+  * [Running a Look via API](looker/look\_query/README.md)
