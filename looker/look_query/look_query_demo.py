@@ -18,7 +18,7 @@ FILTER_TITLE='address'
 ## BEGIN DEMO CODE
 
 # initialize connection
-sdk = looker_sdk.init40("looker.ini")
+sdk = looker_sdk.init40("../looker.ini")
 
 # look up this look
 look = sdk.look(look_id=str(LOOK_ID))

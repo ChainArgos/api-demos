@@ -7,7 +7,7 @@ import pandas as pd
 LOOK_ID=722
 
 # initialize connection
-sdk = looker_sdk.init40("looker.ini")
+sdk = looker_sdk.init40("../looker.ini")
 
 # run look with csv results
 look_results = sdk.run_look(look_id=str(LOOK_ID), result_format="csv")
