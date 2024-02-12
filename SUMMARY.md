@@ -10,3 +10,5 @@
   * [Downloading a look to pandas](looker/look\_to\_pandas/README.md)
   * [Running a look via API](looker/look\_query/README.md)
   * [Running a look with several filters via API](looker/look\_query\_multi/README.md)
+* [Research]
+  * [How empty are Heco blocks these days?](looker/looker\_heco\_xfer\_count/README.md)
