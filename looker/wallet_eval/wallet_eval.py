@@ -42,19 +42,35 @@ looker = looker_sdk.init40("../looker.ini")
 inflows = lookup_inflows(looker, ADDRESS)
 
 # grab inflow source addresses and labels
-inflow_addresses = {}
-categories = {}
-n_rows, _ = inflows.shape
-for row in range(n_rows):
-    addr = inflows.loc[row].at["Transactions From Address"]
-    label = inflows.loc[row].at["From Wallet Labels"]
-    inflow_addresses[addr] = label
-    categories[addr] = []
+inflow_addresses = inflows["Transactions From Address"].unique()
+tokens = inflows["Tokens Symbol"].unique()
+
+# compute total inflow by token
+inflow_totals = {}
+for token in tokens:
+    inflow_totals[token] = sum(inflows.loc[(inflows["Tokens Symbol"] == token)]["Transactions Sum of Transfer Amounts"])
 
 # now get categories for each inflow wallet
-address_q = lookup_address_categories(looker, inflow_addresses)
-n_categories, _ = address_q.shape
-for row in range(n_categories):
-    categories[address_q.loc[row].at["Wallets Address"]] = address_q.loc[row].at["Wallets Categories"].split(" ;; ")
+category_result = lookup_address_categories(looker, inflow_addresses)
+categories = {}
+for address in inflow_addresses:
+    addr_rows = category_result.loc[(category_result["Wallets Address"] == address)]
+    n_rows, _ = addr_rows.shape
+    if n_rows > 0:
+        res = " ;; ".join(addr_rows["Wallets Categories"].unique())
+        categories[address] = list(set(res.split(" ;; ")))
+    else:
+        categories[address] = []
 
 # we are now in a position to determine which inflows are suspicious, sanctioned or otherwise
+per_address_flow_amounts = {}
+for address in inflow_addresses:
+    this_categories = categories[address]
+    per_address_flow_amounts[address] = {}
+    for token in tokens:
+        this_inflows = inflows.loc[(inflows["Tokens Symbol"] == token) & (inflows["Transactions From Address"] == address)]
+        n_rows, _ = this_inflows.shape
+        per_address_flow_amounts[address][token] = sum(this_inflows["Transactions Sum of Transfer Amounts"])
+
+# now work out what fraction of which flows are from suspicious or other sorts of flows
+# and generate the report
