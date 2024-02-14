@@ -3,7 +3,7 @@ from io import StringIO
 import looker_sdk
 import pandas as pd
 
-from looker.wallet_eval.config import WALLET_LOOK_ID, INFLOWS_LOOK_ID
+from looker.wallet_eval.config import WALLET_LOOK_ID, INFLOWS_LOOK_ID, WALLETS_ADDRESS, WALLETS_CATEGORIES
 
 
 def lookup_address_categories(looker, address_list: str):
@@ -23,7 +23,8 @@ def lookup_inflows(looker, address: str):
 def create_query(looker, base_query, query_filter):
     new_query = looker.create_query(body=looker_sdk.models40.WriteQuery(model=base_query.model, view=base_query.view,
                                                                         fields=base_query.fields, filters=query_filter,
-                                                                        pivots=base_query.pivots, total=base_query.total,
+                                                                        pivots=base_query.pivots,
+                                                                        total=base_query.total,
                                                                         row_total=base_query.row_total))
     return new_query
 
@@ -35,10 +36,10 @@ def run_query(sdk, query):
 def grab_wallet_categories(inflow_addresses, category_result):
     categories = {}
     for address in inflow_addresses:
-        addr_rows = category_result.loc[(category_result["Wallets Address"] == address)]
+        addr_rows = category_result.loc[(category_result[WALLETS_ADDRESS] == address)]
         n_rows, _ = addr_rows.shape
         if n_rows > 0:
-            res = " ;; ".join(addr_rows["Wallets Categories"].unique())
+            res = " ;; ".join(addr_rows[WALLETS_CATEGORIES].unique())
             categories[address] = list(set(res.split(" ;; ")))
         else:
             categories[address] = []

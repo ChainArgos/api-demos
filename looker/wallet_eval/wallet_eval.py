@@ -1,33 +1,32 @@
 import looker_sdk
 import pandas as pd
 
-from looker.wallet_eval.config import ADDRESS
+from looker.wallet_eval.config import ADDRESS, TRANSACTIONS_FROM_ADDRESS, TOKENS_SYMBOL, \
+    TRANSACTIONS_SUM_OF_TRANSFER_AMOUNTS
 from looker.wallet_eval.helpers import lookup_address_categories, lookup_inflows, grab_wallet_categories
 from looker.wallet_eval.is_suspicious import is_suspicious_address
 
 
-# work out what fraction of which flows are from suspicious or other sorts of flows
-
 # compute total flows by token and number of flows by token
 def compute_total_flows(inflows):
-    addresses = inflows["Transactions From Address"].unique()
-    tokens = inflows["Tokens Symbol"].unique()
+    tokens = inflows[TOKENS_SYMBOL].unique()
     total = {}
     num = {}
     for token in tokens:
-        total[token] = sum(inflows.loc[(inflows["Tokens Symbol"] == token)]["Transactions Sum of Transfer Amounts"])
-        num[token] = len(inflows.loc[(inflows["Tokens Symbol"] == token)]["Transactions Sum of Transfer Amounts"])
+        total[token] = sum(inflows.loc[(inflows[TOKENS_SYMBOL] == token)][TRANSACTIONS_SUM_OF_TRANSFER_AMOUNTS])
+        num[token] = len(inflows.loc[(inflows[TOKENS_SYMBOL] == token)][TRANSACTIONS_SUM_OF_TRANSFER_AMOUNTS])
     return total, num
 
 
+# work out what fraction of which flows are from suspicious or other sorts of flows
 def main():
     looker = looker_sdk.init40("../looker.ini")
 
     inflows = lookup_inflows(looker, ADDRESS)
 
     # grab inflow source addresses and labels
-    inflow_addresses = inflows["Transactions From Address"].unique()
-    tokens = inflows["Tokens Symbol"].unique()
+    inflow_addresses = inflows[TRANSACTIONS_FROM_ADDRESS].unique()
+    tokens = inflows[TOKENS_SYMBOL].unique()
 
     # now get categories for each inflow wallet
     category_result = lookup_address_categories(looker, inflow_addresses)
@@ -40,7 +39,7 @@ def main():
             sus_addresses.append(address)
 
     total_amounts, total_xfers = compute_total_flows(inflows)
-    sus_amounts, sus_xfers = compute_total_flows(inflows[inflows["Transactions From Address"].isin(sus_addresses)])
+    sus_amounts, sus_xfers = compute_total_flows(inflows[inflows[TRANSACTIONS_FROM_ADDRESS].isin(sus_addresses)])
 
     header = ["token", "total inflow", "flagged inflow", "fraction flagged",
               "# inflows", "# flagged inflows", "fraction inflows flagged"]
@@ -57,5 +56,6 @@ def main():
 
     out_dataframe = pd.DataFrame(data, columns=header)
     print(str(out_dataframe))
+
 
 main()
