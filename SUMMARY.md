@@ -1,11 +1,11 @@
 # Table of contents
 
 * [🔌 api-demos](README.md)
-* [Basic google-Sheet-pivot-table-based gueries](google-sheets/google_sheets.md)
+* [Basic google-sheet-pivot-table-based gueries](google-sheets/google_sheets.md)
   * [🦮 API walkthrough](google-sheets/walkthrough.md)
   * [🎬 Basic ETL demo](google-sheets/basic\_pandas/README.md)
   * [🎰 Compute statistics on YGG flows](google-sheets/ygg\_stats/README.md)
-* [More complex looker API queries](looker/looker\_api.md)
+* [More complex Looker API queries](looker/looker\_api.md)
   * [Looker API introduction](looker/looker\_api\_basic/README.md)
   * [Downloading a look to pandas](looker/look\_to\_pandas/README.md)
   * [Running a look via API](looker/look\_query/README.md)
@@ -13,4 +13,4 @@
 * Research
   * [How empty are Heco blocks these days?](looker/looker\_heco\_xfer\_count/README.md)
   * [Tether minting vs BTC price](looker/tether\_minting\_vs\_price/README.md)
-  * [Wallet Evaluation](looker/wallet\_eval/README.md)
+  * [Wallet evaluation](looker/wallet\_eval/README.md)
