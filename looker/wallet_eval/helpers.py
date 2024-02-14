@@ -3,7 +3,7 @@ from io import StringIO
 import looker_sdk
 import pandas as pd
 
-from looker.wallet_eval.config import WALLET_LOOK_ID, INFLOWS_LOOK_ID, WALLETS_ADDRESS, WALLETS_CATEGORIES
+from looker.wallet_eval.config import WALLET_LOOK_ID, INFLOWS_LOOK_ID, WALLETS_ADDRESS, WALLETS_CATEGORIES, JOINER
 
 
 def lookup_address_categories(looker, address_list: str):
@@ -39,7 +39,7 @@ def grab_wallet_categories(inflow_addresses, category_result):
         addr_rows = category_result.loc[(category_result[WALLETS_ADDRESS] == address)]
         n_rows, _ = addr_rows.shape
         if n_rows > 0:
-            res = " ;; ".join(addr_rows[WALLETS_CATEGORIES].unique())
+            res = JOINER.join(addr_rows[WALLETS_CATEGORIES].unique())
             categories[address] = list(set(res.split(" ;; ")))
         else:
             categories[address] = []

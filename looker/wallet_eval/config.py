@@ -12,3 +12,6 @@ FROM_WALLET_LABELS = "From Wallet Labels"
 
 WALLETS_ADDRESS = "Wallets Address"
 WALLETS_CATEGORIES = "Wallets Categories"
+
+# separator in returned lists
+JOINER = " ;; "
