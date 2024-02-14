@@ -3,7 +3,7 @@ import looker_sdk
 import pandas as pd
 
 WALLET_LOOK_ID = 722
-LOOK_ID = 724
+INFLOWS_LOOK_ID = 724
 ADDRESS = "0x346eF244464679b031750f70D750B3FA65165443"
 
 def lookup_address_categories(looker, address_list: str):
@@ -13,7 +13,7 @@ def lookup_address_categories(looker, address_list: str):
     return run_query(looker, q)
 
 def lookup_inflows(looker, address: str):
-    look = looker.look(look_id=str(LOOK_ID))
+    look = looker.look(look_id=str(INFLOWS_LOOK_ID))
     query_filter = {"ethereum_txns.to_address": address}
     q = create_query(looker, look.query, query_filter)
     return run_query(looker, q)
@@ -88,8 +88,9 @@ def main():
     total_amounts, total_xfers = compute_total_flows(inflows)
     sus_amounts, sus_xfers = compute_total_flows(inflows[inflows["Transactions From Address"].isin(sus_addresses)])
 
-    print(",".join(["token", "total inflow", "flagged inflow", "fraction flagged",
-                    "# inflows", "# flagged inflows", "fraction inflows flagged"]))
+    header = ["token", "total inflow", "flagged inflow", "fraction flagged",
+              "# inflows", "# flagged inflows", "fraction inflows flagged"]
+    data = []
     for token in tokens:
         total_amt = total_amounts[token]
         sus_amt = sus_amounts[token]
@@ -98,6 +99,9 @@ def main():
         frac = sus_amt / total_amt
         frac_num = sus_num / total_num
         res_l = [token, total_amt, sus_amt, frac, total_num, sus_num, frac_num]
-        print(",".join([str(x) for x in res_l]))
+        data.append(res_l)
+
+    out_dataframe = pd.DataFrame(data, columns=header)
+    print(str(out_dataframe))
 
 main()
