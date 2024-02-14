@@ -12,4 +12,5 @@
   * [Running a look with several filters via API](looker/look\_query\_multi/README.md)
 * Research
   * [How empty are Heco blocks these days?](looker/looker\_heco\_xfer\_count/README.md)
+  * [Tether minting vs BTC price](looker/tether\_minting\_vs\_price/README.md)
   * [Wallet Evaluation](looker/wallet\_eval/README.md)
