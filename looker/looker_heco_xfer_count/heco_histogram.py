@@ -16,7 +16,7 @@ look = sdk.look(look_id=str(LOOK_ID))
 query = look.query
 
 start_date = datetime.datetime(2023, 12, 1)
-end_date = datetime.datetime(2024, 2, 12)
+end_date = datetime.datetime(2024, 5, 29)
 df_by_date = {}
 cur_date = start_date
 while cur_date < end_date:
@@ -47,8 +47,11 @@ for dt in df_by_date:
             max_count = this_count
 
 for dt in df_by_date:
-    min_block = min(all_blocks[dt].keys())
-    max_block = max(all_blocks[dt].keys())
+    block_keys = all_blocks[dt].keys()
+    if len(block_keys) == 0:
+        continue
+    min_block = min(block_keys)
+    max_block = max(block_keys)
     for block in range(min_block, max_block):
         if block not in all_blocks[dt]:
             all_blocks[dt][block] = 0
