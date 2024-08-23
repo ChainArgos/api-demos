@@ -8,6 +8,7 @@
 * [More complex Looker API queries](looker/looker\_api.md)
   * [Looker API introduction](looker/looker\_api\_basic/README.md)
   * [Downloading a look to pandas](looker/look\_to\_pandas/README.md)
+  * [Ethereum address inflows](looker/eth_flows/README.md)
   * [Running a look via API](looker/look\_query/README.md)
   * [Running a look with several filters via API](looker/look\_query\_multi/README.md)
 * Research
